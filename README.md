@@ -4,7 +4,6 @@
 * Done:
   * created project
   * created the Polls app
-  * core app added to INSTALLED_APPS
   * wrote views and modern
   * database setup
   * created models
