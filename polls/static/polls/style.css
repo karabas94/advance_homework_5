@@ -1,0 +1,10 @@
+li a {
+    color: green;
+}
+
+body {
+    margin: 0 auto;
+    background: white url("images/background.png") no-repeat;
+    width: 100%;
+    height: auto;
+}
