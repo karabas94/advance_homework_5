@@ -23,3 +23,5 @@
     
 ```
 * Quit the server with CONTROL-C.
+--------
+Project checked by flake8
