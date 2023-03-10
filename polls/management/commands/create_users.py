@@ -1,13 +1,14 @@
-from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
-from faker import Faker
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from django.core.management.base import BaseCommand
+
+from faker import Faker
 
 fake = Faker()
 
 
 class Command(BaseCommand):
-    help = 'Create users'
+    help = 'Create users'  # noqa: A003
 
     def add_arguments(self, parser):
         parser.add_argument('users', nargs=1, type=int, choices=range(1, 11))
