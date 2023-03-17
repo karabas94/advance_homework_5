@@ -1,10 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
 from faker import Faker
 
 fake = Faker()
+User = get_user_model()
 
 
 class Command(BaseCommand):
@@ -15,7 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         user = []
-        for _ in range(int(options['users'][0])):
+        for _ in range(options['users']):
             user.append(User(username=fake.name(), email=fake.email(), password=make_password(fake.password())))
         User.objects.bulk_create(user)
 

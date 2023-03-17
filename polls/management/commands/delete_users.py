@@ -1,5 +1,7 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
+
+User = get_user_model()
 
 
 class Command(BaseCommand):
@@ -10,9 +12,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         users = options['user_ids']
-        if User.objects.filter(id__in=users, is_superuser=True):
+        if User.objects.filter(id__in=users, is_superuser=True).exists():
             raise CommandError('Cannot delete superuser')
         else:
             User.objects.filter(id__in=users, is_superuser=False).delete()
 
-        self.stdout.write(self.style.SUCCESS(f'Successfully deleted user(s) with id number {", ".join(map(str, users))}'))
+        self.stdout.write(
+            self.style.SUCCESS(f'Successfully deleted user(s) with id number {", ".join(map(str, users))}'))
